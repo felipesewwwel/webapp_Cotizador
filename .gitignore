@@ -1,0 +1,26 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+
+# --- Django ---
+*.log
+db.sqlite3
+media/
+
+# Static files (Generados por WhiteNoise/Render en el despliegue)
+staticfiles/
+
+# --- Entornos Virtuales ---
+venv/
+env/
+.venv/
+
+# --- Variables de Entorno y Secretos ---
+.env
+
+# --- IDEs y Sistema Operativo ---
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

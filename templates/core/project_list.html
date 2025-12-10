@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load humanize %} 
+{% block content %}
+<h2 class="mb-3">Listado de Proyectos</h2>
+<div class="card shadow">
+    <table class="table table-striped mb-0">
+        <thead>
+            <tr>
+                <th>Cliente</th>
+                <th>Fecha</th>
+                <th>Estado</th>
+                <th>Pago</th>
+                <th class="text-end">Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for p in projects %}
+            <tr>
+                <td>{{ p.client.name }}<br><small class="text-muted">{{ p.delivery_address }}</small></td>
+                <td>{{ p.start_date|date:"d/m/Y" }}</td>
+                <td><span class="badge bg-info text-dark">{{ p.project_status }}</span></td>
+                <td><span class="badge {% if p.payment_status == 'Pagado' %}bg-success{% else %}bg-warning text-dark{% endif %}">{{ p.payment_status }}</span></td>
+                <td class="text-end fw-bold">${{ p.total_cost|intcomma }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
