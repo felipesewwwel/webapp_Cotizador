@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from django.db.models import Sum, Count
 from django.db.models.functions import TruncMonth
-from .models import Project
+from .models import Client, Project
 import json
+from rest_framework import viewsets
+from .serializers import ClientSerializer, ProjectSerializer
 
 def project_list(request):
     # Obtenemos proyectos y optimizamos la consulta a la BD
@@ -30,3 +32,11 @@ def earnings_dashboard(request):
         'chart_data': json.dumps(data)
     }
     return render(request, 'core/dashboard.html', context)
+
+class ClientViewSet(viewsets.ModelViewSet):
+    queryset = Client.objects.all()
+    serializer_class = ClientSerializer
+
+class ProjectViewSet(viewsets.ModelViewSet):
+    queryset = Project.objects.all()
+    serializer_class = ProjectSerializer
